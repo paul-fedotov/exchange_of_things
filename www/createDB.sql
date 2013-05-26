@@ -37,5 +37,5 @@ CREATE TABLE users (
 	rating INT(5),/*Рейтинг*/
 	foto mediumblob,/*фотография*/
 	phone CHAR(20) DEFAULT NULL,/*телефон(не обязательное поле для заполнения)*/
-	city CHAR(20)/*Город*/
-	key CHAR(50) /*Ключ для авторизации*/);
+	city CHAR(20),/*Город*/
+	`key` CHAR(50) /*Ключ для авторизации*/);

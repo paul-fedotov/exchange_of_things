@@ -1,7 +1,7 @@
 <?php
 	class Images{
 		public function getImages(){
-			$tabl=new PDO('mysql:host=localhost;dbname=test','root','');
+			$tabl=new PDO('mysql:host=localhost;dbname=SWAG','root','');
 			$st=$tabl->prepare("SELECT id FROM things ".((($_POST['id']!='last')?'WHERE id<:D':''))." ORDER BY id DESC LIMIT 12");
 			if ($_POST['id']!='last') $st->bindValue(':D',$_POST['id']);
 			if (!$st->execute()) var_dump($st->errirInfo());

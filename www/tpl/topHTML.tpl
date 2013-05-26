@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="/gallery/gallery.js"></script>
 	<meta http-equiv="content-type" content="text/html" charset="utf-8">
 </head>
-<body>
+<body onload="pageLoad()">
   <div class="navbar">
 		<div class="navbar-inner">
 			<a class="brand"><h2 class="form-signin-heading">Картинка</h2></a>

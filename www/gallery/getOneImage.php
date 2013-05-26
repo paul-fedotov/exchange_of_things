@@ -1,6 +1,6 @@
 <?php	
 	if (isset($_GET['id'])){
-		$tabl=new PDO('mysql:host=localhost;dbname=test','root','');//admin/admin 
+		$tabl=new PDO('mysql:host=localhost;dbname=SWAG','root','');//admin/admin 
 		$st=$tabl->prepare("SELECT puctureOne as content FROM things WHERE id=:D");
 		$st->bindValue(':D',$_GET['id']);
 		if (!$st->execute()) var_dump($st->errorInfo());
