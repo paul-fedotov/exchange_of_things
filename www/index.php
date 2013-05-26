@@ -12,6 +12,7 @@
   <div class="container">
 		<div class="span13"> 
 			<table id="tableOut"></table>
+			<input type="button" onClick="pageLoad()" value="ЕЩЁ" id="button_add">
 		</div>
   </div>
   <div class="navbar navbar-fixed-bottom"> А тут подвал </div>
