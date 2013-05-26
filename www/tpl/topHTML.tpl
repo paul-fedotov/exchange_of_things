@@ -4,7 +4,7 @@
 <title> Добро пожаловать </title>
 	<script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="/js/scripts.js"></script>
-	<script type="text/javascript" src="/js/gallery.js"></script>
+	<script type="text/javascript" src="/gallery/gallery.js"></script>
 	<meta http-equiv="content-type" content="text/html" charset="utf-8">
 </head>
 <body>

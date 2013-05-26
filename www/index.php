@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	session_start();
 	echo file_get_contents('tpl/topHTML.tpl');
 	if (isset($_SESSION['authorized'])) {
