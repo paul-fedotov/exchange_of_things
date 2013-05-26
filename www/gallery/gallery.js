@@ -35,9 +35,12 @@ function block(){
 			var id = elems[i].getAttribute('id');
 			var td = document.createElement('td');
 			var img = document.createElement('img');
+			var a = document.createElement('a');
 			img.setAttribute('src','gallery/getOneImage.php?id='+id);
 			img.setAttribute('width',100);
-			td.appendChild(img);
+			a.setAttribute('href','item.php?id='+id);//создает ссылку на станицу одной шмоточки!
+			a.appendChild(img);
+			td.appendChild(a);
 			td.setAttribute('id',id);
 			tr.appendChild(td);
 			if ((i%step==step-1)||(i==elems.length-1)) table.appendChild(tr);
