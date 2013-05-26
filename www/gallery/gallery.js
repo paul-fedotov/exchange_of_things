@@ -20,7 +20,7 @@ function block(){
 	}
 	this.getImages = function(){//запрашивает id выводимых картинок и выводит их (картинки)
 		var xmlHTTP = getXmlHttpRequest();
-		xmlHTTP.open("POST","getImages.php",false);
+		xmlHTTP.open("POST","gallery/getImages.php",false);
 		xmlHTTP.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xmlHTTP.send('id='+this.getId());
 		var xmlModel = xmlHTTP.responseXML;
@@ -35,7 +35,7 @@ function block(){
 			var id = elems[i].getAttribute('id');
 			var td = document.createElement('td');
 			var img = document.createElement('img');
-			img.setAttribute('src','getOneImage.php?id='+id);
+			img.setAttribute('src','gallery/getOneImage.php?id='+id);
 			img.setAttribute('width',100);
 			td.appendChild(img);
 			td.setAttribute('id',id);
@@ -51,7 +51,7 @@ function block(){
 	}
 	this.checkId = function(id){
 		var xmlHTTP = getXmlHttpRequest();
-		xmlHTTP.open("POST","checkId.php",false);
+		xmlHTTP.open("POST","gallery/checkId.php",false);
 		xmlHTTP.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xmlHTTP.send('id='+id);
 		switch (xmlHTTP.responseText){
