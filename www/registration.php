@@ -31,26 +31,16 @@ $pass = md5(sha1(md5($pass.$salt)).$salt);
 $login = dsCrypt ($login);
 $email = dsCrypt ($email);
 $tel = dsCrypt ($tel);
-$sql = "INSERT INTO users (name, login, password , email , rating ,foto, phone , city)  VALUES ($Yname, $login , $pass , $email , '1' , '' ,  $tel , $city)";
+//$sql = "INSERT INTO users (name, login, password , email , rating ,foto, phone , city)  VALUES ($Yname, $login , $pass , $email , '1' , '' ,  $tel , $city)";
 $result = mysql_query ("INSERT INTO users (name, login, password , email , rating ,foto, phone , city)  VALUES ('$Yname', '$login' , '$pass' , '$email' , '1' , '' ,  '$tel' , '$city')");
 if (!$result) {
 
 echo "Ошибка выполнения!";
 } 
 else {
-echo <<<successregistration
-<html>
-<head>
-<link href="css/bootstrap.css" rel="stylesheet">
-<title> Добро пожаловать </title>
-</head>
-<body>
-    <div class="container">
-		Вы успешно зарегистрировались!
-    </div>
-</body>
-</html>
-successregistration;
+		echo '<script type="text/javascript">';
+		echo 'window.location.href="index.php";';
+		echo '</script>';
 }
 }
 }

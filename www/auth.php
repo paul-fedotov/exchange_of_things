@@ -30,20 +30,20 @@
 		$result = mysql_query("UPDATE users SET  `key`='$key' WHERE `login`='$login'");
 		if ($result) {
 			echo '<script type="text/javascript">';
-			echo 'window.location.href="main.html";';
+			echo 'window.location.href="index.php";';
 			echo '</script>';
 		}
 		else {
 			echo "Произошла ошибка авторизации попробуйте еще раз.";
 			sleep(1);
 			echo '<script type="text/javascript">';
-			echo 'window.location.href="index.html";';
+			echo 'window.location.href="index.php";';
 			echo '</script>';
 		}
 	}
 	else {
 		echo '<script type="text/javascript">';
-		echo 'window.location.href="index.html";';
+		echo 'window.location.href="index.php";';
 		echo '</script>';
 	}
 ?>
