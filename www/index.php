@@ -6,8 +6,8 @@
 	} else {
 		echo file_get_contents('tpl/AuthForm.tpl');
 	}
-?>
-		</div>
+	echo <<<str
+	</div>
   </div>
   <div class="container">
 		<div class="span13"> 
@@ -17,3 +17,5 @@
   <div class="navbar navbar-fixed-bottom"> А тут подвал </div>
 </body>
 </html>
+str;
+?>
