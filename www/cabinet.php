@@ -5,7 +5,10 @@ echo <<<lk
 <html>
 <head>
 <link href="css/bootstrap.css" rel="stylesheet">  
-<title> Добро пожаловать </title>
+<meta http-equiv="content-type" content="text/html" charset="UTF-8">
+<meta name="description" content="Р›Рљ">
+<script type="text/javascript" src="/gallery/gallery.js"></script>
+<title> Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ </title>
 </head>
 <style type="text/css">
       body {
@@ -28,25 +31,30 @@ echo <<<lk
                 box-shadow: 0 1px 2px rgba(0,0,0,.05);
       }
 </style>
-<body>
+<body onLoad="pageLoad()">
+		<div class="gallery">
+			<h3 class="form-signin-heading">Р’Р°С€Рё РІРµС‰Рё</h3>
+			<table id="tableOut" align="center"></table>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</div>
     <div class="container">
 	<form class="form-signin" action="change.php" method="POST" autocomplete="off" >
-        <h3 class="form-signin-heading">Изменение пароля</h3>
-        <input name="password" type="password" class="input-block-level" placeholder="Пароль" required>
-		<input name="re-password" type="password" class="input-block-level" placeholder="Введите еще раз пароль" required>
-	    <h3 class="form-signin-heading">Изменение почты</h3>
+        <h3 class="form-signin-heading">РР·РјРµРЅРµРЅРёРµ РїР°СЂРѕР»СЏ</h3>
+        <input name="password" type="password" class="input-block-level" placeholder="РџР°СЂРѕР»СЊ" required>
+		<input name="re-password" type="password" class="input-block-level" placeholder="Р’РІРµРґРёС‚Рµ РµС‰Рµ СЂР°Р· РїР°СЂРѕР»СЊ" required>
+	    <h3 class="form-signin-heading">РР·РјРµРЅРµРЅРёРµ РїРѕС‡С‚С‹</h3>
         <input name="password" type="password" class="input-block-level" placeholder="email">
-        <h3 class="form-signin-heading">Изменение имени</h3>
+        <h3 class="form-signin-heading">РР·РјРµРЅРµРЅРёРµ РёРјРµРЅРё</h3>
         <input name="password" type="password" class="input-block-level" placeholder="name">
-        <h3 class="form-signin-heading">Изменение телефона</h3>
+        <h3 class="form-signin-heading">РР·РјРµРЅРµРЅРёРµ С‚РµР»РµС„РѕРЅР°</h3>
         <input name="password" type="password" class="input-block-level" placeholder="telephone">
-        <h3 class="form-signin-heading">Изменение города</h3>
+        <h3 class="form-signin-heading">РР·РјРµРЅРµРЅРёРµ РіРѕСЂРѕРґР°</h3>
 		<select name="city">
-		<option selected disabled="">Выберите город</option>
-		<option value="Москва">Москва</option>
-		<option value="Санкт-Петербург">Санкт-Петербург</option>
+		<option selected disabled="">Р’С‹Р±РµСЂРёС‚Рµ РіРѕСЂРѕРґ</option>
+		<option value="РњРѕСЃРєРІР°">РњРѕСЃРєРІР°</option>
+		<option value="РЎР°РЅРєС‚-РџРµС‚РµСЂР±СѓСЂРі">РЎР°РЅРєС‚-РџРµС‚РµСЂР±СѓСЂРі</option>
 		</select>
-		<button class="btn btn-large btn-primary" type="submit">Изменить данные</button>
+		<button class="btn btn-large btn-primary" type="submit">РР·РјРµРЅРёС‚СЊ РґР°РЅРЅС‹Рµ</button>
 	  </form>
     </div>
 </body>
@@ -54,8 +62,8 @@ echo <<<lk
 lk;
 }
 else {
-echo '<script type="text/javascript">';
-echo 'window.location.href="index.html";';
-echo '</script>';
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="index.php";';
+	echo '</script>';
 }
 ?>

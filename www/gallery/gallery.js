@@ -29,7 +29,14 @@ function block(){
 	this.out = function(xml){//выводит все запрошенные картинки
 		var elems = xml.documentElement.childNodes;
 		var table = document.getElementById('tableOut');
-		var step=4;
+		var st = unescape(window.location.href);
+    var r = st.substring(st.lastIndexOf('/')+1,st.length);
+		var name=r.substring(0,r.lastIndexOf('.'));
+		var step;
+		switch (name) {
+			case 'cabinet': step=2; break;
+			case 'index': step=4; break;
+		}
 		for (var i=0;i<elems.length;i++){
 			if (i%step==0) var tr = document.createElement('tr');
 			var id = elems[i].getAttribute('id');

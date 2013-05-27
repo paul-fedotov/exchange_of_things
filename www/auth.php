@@ -1,10 +1,10 @@
 <?php
 	function generated($length) {  
-		$chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789'; // набор символов
-		$count_chars = strlen ($chars); // длина строки символов  
+		$chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789'; // РЅР°Р±РѕСЂ СЃРёРјРІРѕР»РѕРІ
+		$count_chars = strlen ($chars); // РґР»РёРЅР° СЃС‚СЂРѕРєРё СЃРёРјРІРѕР»РѕРІ  
 		for ($i=0; $i<$length; $i++) {  
-			$rand = rand (1,$count_chars); // генерируем случайное число от 1 до числа равному длине строки набора символов  
-			$string .= substr ($chars, $rand, 1); //возвращаем строку длиной 1 символ
+			$rand = rand (1,$count_chars); // РіРµРЅРµСЂРёСЂСѓРµРј СЃР»СѓС‡Р°Р№РЅРѕРµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ С‡РёСЃР»Р° СЂР°РІРЅРѕРјСѓ РґР»РёРЅРµ СЃС‚СЂРѕРєРё РЅР°Р±РѕСЂР° СЃРёРјРІРѕР»РѕРІ  
+			$string .= substr ($chars, $rand, 1); //РІРѕР·РІСЂР°С‰Р°РµРј СЃС‚СЂРѕРєСѓ РґР»РёРЅРѕР№ 1 СЃРёРјРІРѕР»
 		}   
 		return $string;
 	}
@@ -34,7 +34,7 @@
 			echo '</script>';
 		}
 		else {
-			echo "Произошла ошибка авторизации попробуйте еще раз.";
+			echo "РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·.";
 			sleep(1);
 			echo '<script type="text/javascript">';
 			echo 'window.location.href="index.php";';

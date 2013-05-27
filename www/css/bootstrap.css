@@ -8,6 +8,7 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
+
 .clearfix {
   *zoom: 1;
 }
@@ -325,8 +326,14 @@ section.container > section.item > img {width: 100%;}
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 1200px;
+  right: 30px;
+	
 }
+
+.gallery{
+	float: left;
+	margin-left: 30px;
+} 
 
 .span13 {
   width:1200px;
