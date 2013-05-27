@@ -14,7 +14,8 @@ $re_pass = trim($re_pass);
 $email = trim($email);
 $Yname = trim($Yname);
 $tel = trim($tel);
-
+$login = dsCrypt ($login);
+$email = dsCrypt ($email);
 if ($pass === $re_pass) {
 //connect
 include ('bd.php');
@@ -28,8 +29,6 @@ $err = "Такой email уже занят";
 }
 else {
 $pass = md5(sha1(md5($pass.$salt)).$salt);
-$login = dsCrypt ($login);
-$email = dsCrypt ($email);
 $tel = dsCrypt ($tel);
 //$sql = "INSERT INTO users (name, login, password , email , rating ,foto, phone , city)  VALUES ($Yname, $login , $pass , $email , '1' , '' ,  $tel , $city)";
 $result = mysql_query ("INSERT INTO users (name, login, password , email , rating ,foto, phone , city)  VALUES ('$Yname', '$login' , '$pass' , '$email' , '1' , '' ,  '$tel' , '$city')");
@@ -83,7 +82,7 @@ echo <<<error
         <input name="login" type="text" class="input-block-level" placeholder="Ваш Логин"  required>
         <input name="password" type="password" class="input-block-level" placeholder="Пароль" required>
 		<input name="re-password" type="password" class="input-block-level" placeholder="Введите еще раз пароль" required>
-		<input name="email" type="email" class="input-block-level" placeholder="E-mail" value= required>
+		<input name="email" type="email" class="input-block-level" placeholder="E-mail" required>
 		<input name="Yname" type="text" class="input-block-level" placeholder="Ваше имя" value="$Yname" required>
 		<input name="tel" type="number" class="input-block-level" placeholder="Телефонный номер" value="$tel">
 		<select name="city">
