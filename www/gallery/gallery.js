@@ -29,7 +29,7 @@ function block(){
 	this.out = function(xml){//выводит все запрошенные картинки
 		var elems = xml.documentElement.childNodes;
 		var table = document.getElementById('tableOut');
-		var step=3;
+		var step=4;
 		for (var i=0;i<elems.length;i++){
 			if (i%step==0) var tr = document.createElement('tr');
 			var id = elems[i].getAttribute('id');
@@ -37,7 +37,7 @@ function block(){
 			var img = document.createElement('img');
 			var a = document.createElement('a');
 			img.setAttribute('src','gallery/getOneImage.php?id='+id);
-			img.setAttribute('width',100);
+			img.setAttribute('width',270);
 			a.setAttribute('href','item.php?id='+id);//создает ссылку на станицу одной шмоточки!
 			a.appendChild(img);
 			td.appendChild(a);
