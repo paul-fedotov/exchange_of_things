@@ -20,23 +20,26 @@ function block(){
 	}
 	this.getImages = function(){//запрашивает id выводимых картинок и выводит их (картинки)
 		var xmlHTTP = getXmlHttpRequest();
-		xmlHTTP.open("POST","gallery/getImages.php",false);
-		xmlHTTP.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xmlHTTP.send('id='+this.getId());
-		var xmlModel = xmlHTTP.responseXML;
-		this.out(xmlModel);
-	}
-	this.out = function(xml){//выводит все запрошенные картинки
-		var elems = xml.documentElement.childNodes;
-		var table = document.getElementById('tableOut');
 		var st = unescape(window.location.href);
     var r = st.substring(st.lastIndexOf('/')+1,st.length);
 		var name=r.substring(0,r.lastIndexOf('.'));
-		var step;
+		var step,page='';
 		switch (name) {
-			case 'cabinet': step=2; break;
+			case 'cabinet': {
+				step=2; 
+				page='&page=LK';
+			} break;
 			case 'index': step=4; break;
 		}
+		xmlHTTP.open("POST","gallery/getImages.php",false);
+		xmlHTTP.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xmlHTTP.send('id='+this.getId()+page);
+		var xmlModel = xmlHTTP.responseXML;
+		this.out(xmlModel,step);
+	}
+	this.out = function(xml,step){//выводит все запрошенные картинки
+		var elems = xml.documentElement.childNodes;
+		var table = document.getElementById('tableOut');
 		for (var i=0;i<elems.length;i++){
 			if (i%step==0) var tr = document.createElement('tr');
 			var id = elems[i].getAttribute('id');
