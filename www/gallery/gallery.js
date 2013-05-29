@@ -20,7 +20,6 @@ function block(){
 	}
 	this.getImages = function(){//запрашивает id выводимых картинок и выводит их (картинки)
 		var xmlHTTP = getXmlHttpRequest();
-		xmlHTTP.withCredentials = true;
 		var st = unescape(window.location.href);
     var r = st.substring(st.lastIndexOf('/')+1,st.length);
 		var name=r.substring(0,r.lastIndexOf('.'));

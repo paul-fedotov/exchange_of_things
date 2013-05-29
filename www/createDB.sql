@@ -26,6 +26,14 @@ CREATE TABLE thingsComments (
 	comment CHAR(200));
 */
 
+
+DROP TABLE IF EXISTS `userthings`;
+CREATE TABLE IF NOT EXISTS `userthings` (
+	 `id` int(5) NOT NULL AUTO_INCREMENT,
+	 `user_id` int(5),
+	 `thing_id` int(5));
+
+
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(5) NOT NULL AUTO_INCREMENT,
