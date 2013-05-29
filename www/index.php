@@ -6,6 +6,7 @@
 	} else {
 		echo file_get_contents('tpl/AuthForm.tpl');
 	}
+	var_dump($_COOKIE);
 	echo <<<str
 	</div>
   </div>

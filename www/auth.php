@@ -25,6 +25,7 @@
 		session_start();
 		$_SESSION['login'] = "$login";
 		$_SESSION['id'] = "$result[user_id]";
+		setcookie('id',$result['user_id']);
 		$_SESSION['key'] = "$key";
 		$_SESSION['authorized'] = 1;
 		$result = mysql_query("UPDATE users SET  `key`='$key' WHERE `login`='$login'");

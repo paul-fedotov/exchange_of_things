@@ -26,16 +26,22 @@ CREATE TABLE thingsComments (
 	comment CHAR(200));
 */
 
-DROP TABLE IF EXISTS users;/*таблица вещей*/
-CREATE TABLE users (
-	user_id INT(5) AUTO_INCREMENT,/*id*/
-	PRIMARY KEY (user_id),
-	name CHAR(40),/*Имя*/
-	login CHAR(20),/*login*/
-	password CHAR(50),/*пароль*/
-	email CHAR(40),/*почта*/
-	rating INT(5),/*Рейтинг*/
-	foto mediumblob,/*фотография*/
-	phone CHAR(20) DEFAULT NULL,/*телефон(не обязательное поле для заполнения)*/
-	city CHAR(20),/*Город*/
-	`key` CHAR(50) /*Ключ для авторизации*/);
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(5) NOT NULL AUTO_INCREMENT,
+  `name` char(40) DEFAULT NULL,
+  `login` char(20) DEFAULT NULL,
+  `password` char(100) DEFAULT NULL,
+  `email` char(40) DEFAULT NULL,
+  `rating` int(5) DEFAULT NULL,
+  `foto` mediumblob,
+  `phone` char(30) DEFAULT NULL,
+  `city` char(20) DEFAULT NULL,
+  `key` char(100) NOT NULL,
+  PRIMARY KEY (`user_id`)
+);
+
+
+
+INSERT INTO `users` (`user_id`, `name`, `login`, `password`, `email`, `rating`, `foto`, `phone`, `city`, `key`) VALUES/*тест*/
+(1, 'Sergey', 'RME5!6', '0ca9e5597e44aaf4dd1c70c25ca72e82', 'RME5!6_MKW8S]00P', 1, '', 'eroa@', 'Москва', 'FAPeT6QxsY6wvR50D36J2Rn8');

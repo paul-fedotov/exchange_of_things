@@ -6,7 +6,6 @@ echo <<<lk
 <head>
 <link href="css/bootstrap.css" rel="stylesheet">  
 <meta http-equiv="content-type" content="text/html" charset="UTF-8">
-<meta name="description" content="ЛК">
 <script type="text/javascript" src="/gallery/gallery.js"></script>
 <title> Добро пожаловать </title>
 </head>
