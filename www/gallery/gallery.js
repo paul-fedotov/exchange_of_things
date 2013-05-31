@@ -39,10 +39,13 @@ function block(){
 		this.out(xmlModel,step);
 	}
 	this.out = function(xml,step){//выводит все запрошенные картинки
+		alert(step);
 		var elems = xml.documentElement.childNodes;
 		var table = document.getElementById('tableOut');
 		for (var i=0;i<elems.length;i++){
-			if (i%step==0) var tr = document.createElement('tr');
+			if (i%step==0) {
+				var tr = document.createElement('tr');
+			}
 			var id = elems[i].getAttribute('id');
 			var td = document.createElement('td');
 			var img = document.createElement('img');
