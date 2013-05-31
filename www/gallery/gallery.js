@@ -28,7 +28,7 @@ function block(){
 			case 'cabinet': {
 				step=2;
 				page='&page=LK';
-				xmlHTTP.withCredentials = true;
+				// xmlHTTP.withCredentials = true;
 			} break;
 			case 'index': step=4; break;
 		}
