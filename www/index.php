@@ -10,7 +10,7 @@
 	</div>
   </div>
   <div class="container">
-		<div class="span13"> 
+		<div class="span13">
 			<table id="tableOut" align="center"></table>
 			<input type="button" onClick="pageLoad()" value="ЕЩЁ" id="button_add">
 		</div>

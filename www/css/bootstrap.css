@@ -7,8 +7,41 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+.tableItem tr td{
+	border: 1px solid;
+	vertical-align: top;
+}
+ 
+.tableItem tr td img{
+	height:100px;
+}
+.bkItem{
+	position: absolute;
+	width: 100%;
+	height:100%;
+	background-color: black;
+	opacity: 0.5;
+	left:0;
+	top:0;
+}
 
+.bkItem div{	
+	position: absolute;
+	top: 35%;
+	left:30%;
+	background-color: black;
+	opacity: none!important;
+}
 
+#addButton{
+	vertical-align: bottom!important;
+}
+
+#mainPucture img{
+	height: 503px!important;
+	
+}
+ 
 .clearfix {
   *zoom: 1;
 }

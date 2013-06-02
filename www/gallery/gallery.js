@@ -39,7 +39,6 @@ function block(){
 		this.out(xmlModel,step);
 	}
 	this.out = function(xml,step){//выводит все запрошенные картинки
-		alert(step);
 		var elems = xml.documentElement.childNodes;
 		var table = document.getElementById('tableOut');
 		for (var i=0;i<elems.length;i++){
@@ -50,7 +49,7 @@ function block(){
 			var td = document.createElement('td');
 			var img = document.createElement('img');
 			var a = document.createElement('a');
-			img.setAttribute('src','gallery/getOneImage.php?id='+id);
+			img.setAttribute('src','gallery/getOneImage.php?id='+id+'&number=One');
 			img.setAttribute('width',270);
 			a.setAttribute('href','item.php?id='+id);//создает ссылку на станицу одной шмоточки!
 			a.appendChild(img);
@@ -80,7 +79,7 @@ function block(){
 }
 
 var page = new block();
-function pageLoad() {
+function pageLoad() {//грузит галереи
 	page.getImages();
 }
 window.onscroll = function(){//запускает добавление, если достигнут конец страницы
