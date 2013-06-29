@@ -7,6 +7,17 @@ function parseGetParams() {
    }
    return mass; 
 }
+function getSize(img,n){
+	alert('s');
+	if (img.width>img.height) {
+		var d = n/img.width;
+	} else var d = n/img.width;
+	alert(d);
+	var newWidth = d*img.width;
+	var newHeight = d*img.height;
+	img.setAttribute('width',newWidth);
+	img.setAttribute('height',newHeight);
+}
 function loadPuctures(){//загружает картинки при загрузке страницы
 	var mainPucture = document.getElementById('mainPucture');
 	var puctureOne = document.getElementById('puctureOne');
@@ -20,6 +31,7 @@ function loadPuctures(){//загружает картинки при загру�
 	imgOne.setAttribute('src','gallery/getOneImage.php?id='+parseGetParams().id+'&number=One');
 	imgTwo.setAttribute('src','gallery/getOneImage.php?id='+parseGetParams().id+'&number=Two');
 	imgThree.setAttribute('src','gallery/getOneImage.php?id='+parseGetParams().id+'&number=Three');
+	// getSize(mainImg,n);
 	mainImg.setAttribute('onClick',"getImage()");
 	imgOne.setAttribute('onClick',"setImage(1)");
 	imgTwo.setAttribute('onClick',"setImage(2)");
