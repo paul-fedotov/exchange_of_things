@@ -48,7 +48,6 @@ function block(){
 		var elems = xml.documentElement.childNodes;
 		var table = document.getElementById('tableOut');
 		for (var i=0;i<elems.length;i++){
-			alert(i%step);
 			if (i%step==0) var tr = document.createElement('tr');
 			var id = elems[i].getAttribute('id');
 			var td = document.createElement('td');
