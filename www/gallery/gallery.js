@@ -31,20 +31,25 @@ function block(){
 				// xmlHTTP.withCredentials = true;
 			} break;
 			case 'index': step=4; break;
+			default: step=4;
 		}
 		xmlHTTP.open("POST","gallery/getImages.php",false);
 		xmlHTTP.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xmlHTTP.send('id='+this.getId()+page);
-		var xmlModel = xmlHTTP.responseXML;
-		this.out(xmlModel,step);
+		// if (xmlHTTP.responseText!=0) {
+			var xmlModel = xmlHTTP.responseXML;
+			this.out(xmlModel,step);
+		// } else {
+			// var button = document.getElementById('button_add');
+			// button.parentNode.removeChild(button);
+		// }
 	}
 	this.out = function(xml,step){//выводит все запрошенные картинки
 		var elems = xml.documentElement.childNodes;
 		var table = document.getElementById('tableOut');
 		for (var i=0;i<elems.length;i++){
-			if (i%step==0) {
-				var tr = document.createElement('tr');
-			}
+			alert(i%step);
+			if (i%step==0) var tr = document.createElement('tr');
 			var id = elems[i].getAttribute('id');
 			var td = document.createElement('td');
 			var img = document.createElement('img');

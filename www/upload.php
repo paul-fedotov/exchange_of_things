@@ -82,6 +82,7 @@ if (isset($nameCloth) && isset($image1)){
 <html>
 <head>
   <title>Результат загрузки файла</title>
+	<meta http-equiv="content-type" content="text/html" charset="utf-8">
 </head>
 <body>
 </body>

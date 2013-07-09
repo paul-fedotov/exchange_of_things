@@ -1,5 +1,6 @@
 <?php
 	session_start();
+if ($_SESSION['authorized'] == 1) {
 	require_once('temp.php');
 	echo <<<str
 		<html>
@@ -34,9 +35,7 @@ str;
 	if ($st) {
 		$a=$st->fetch(PDO::FETCH_ASSOC);
 		$tableItem = new template('tpl/tableItem.tpl');
-		foreach ($a as $q=>$v) {
-			$tableItem->assign($q,$v);
-		}
+		foreach ($a as $q=>$v) $tableItem->assign($q,$v);
 		$tableItem->assign('prop',"class='tableItem'");
 		echo $tableItem->getHTML();
 	}
@@ -44,10 +43,15 @@ str;
 		</div>
   </div>
 	<div class="comments" id="itemComments">
-		Кооменты<br>coming soon
+		Комменты<br>coming soon
 	</div>
   <div class="navbar navbar-fixed-bottom"> А тут подвал </div>
 </body>
 </html>
 str;
+} else {
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="index.php";';
+	echo '</script>';
+}
 ?> 

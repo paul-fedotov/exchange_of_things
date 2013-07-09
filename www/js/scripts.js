@@ -79,3 +79,7 @@ GALLERY = {
 	}
     }
 }
+
+function toExchangePage(){
+	
+}

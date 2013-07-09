@@ -12,6 +12,9 @@
 			} elseif ($_POST['page']=='LK') $st=$tabl->prepare("SELECT id FROM things WHERE user_id=".$_COOKIE['id'].(($_POST['id']!='last')?' and id<:D':'')." ORDER BY id DESC LIMIT 12");
 			if ($_POST['id']!='last') $st->bindValue(':D',$_POST['id']);
 			if (!$st->execute()) var_dump($st->errorInfo());
+				// if (!$st) {
+					// echo 0;
+				// } else 
 			$this->getXML($st);
 		}
 		private function getXML($st){

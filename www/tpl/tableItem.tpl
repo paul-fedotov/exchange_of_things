@@ -15,6 +15,6 @@
 		<td rowspan="2" id="puctureThree"></td><td>{cost}</td>
 	</tr>
 	<tr>
-		<td id="addButton"><input type="button" name="add" value="ДОБАВИТЬ"></td>
+		<td id="addButton"><input type="button" name="exchange" value="ОБМЕНЯТЬ" onClick="toExchangePage()"><br><input type="button" name="add" value="ДОБАВИТЬ"></td>
 	</tr>
 </table>
