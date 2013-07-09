@@ -50,29 +50,7 @@ function setImage(n){//меняет картинки по нажатию на н
 	}
 	var img = document.getElementById('pucture'+number).firstChild;
 	var newImg = img.cloneNode(false);
-	newImg.setAttribute('onClick',"getImage()");
 	var div = document.getElementById('mainPucture');
 	var oldImg = div.firstChild;
 	div.replaceChild(newImg,oldImg);
-}
-function nextImg(){//
-	
-}
-function getImage(){//
-	var body = document.getElementsByTagName('body');
-	var div = document.createElement('div');
-	var divImg = document.createElement('div');
-	var img = document.getElementById('mainPucture').firstChild;
-	var newImg = img.cloneNode(false);
-	newImg.setAttribute('onClick',"nextImg()");
-	div.setAttribute('class','bkItem');
-	div.setAttribute('id','bigImage');
-	divImg.appendChild(newImg);
-	div.appendChild(divImg);
-	div.setAttribute('onClick',"deleteItem()");
-	document.body.appendChild(div);
-}
-function deleteItem(){
-	var div = document.getElementById('bigImage');
-	div.parentNode.removeChild(div);
 }

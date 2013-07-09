@@ -79,7 +79,6 @@ GALLERY = {
 	}
     }
 }
-
 function toExchangePage(){
 	
 }

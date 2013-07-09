@@ -49,6 +49,12 @@ str;
 </body>
 </html>
 str;
+if (isset($_POST['exchange'])){
+	$_SESSION['idItem']=$_GET['id'];
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="exchange.php";';//Где exchange.php - стрраница обмена
+	echo '</script>';
+}
 } else {
 	echo '<script type="text/javascript">';
 	echo 'window.location.href="index.php";';
