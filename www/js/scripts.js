@@ -79,6 +79,3 @@ GALLERY = {
 	}
     }
 }
-function toExchangePage(){
-	
-}

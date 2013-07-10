@@ -1,5 +1,6 @@
 <?php
 	session_start();
+if ($_SESSION['authorized'] == 1) {
 	require_once('temp.php');
 	echo <<<str
 		<html>
@@ -39,4 +40,9 @@ var_dump($_SESSION['idItem']);
 </body>
 </html>
 str;
+} else {
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="index.php";';
+	echo '</script>';
+}
 ?>
