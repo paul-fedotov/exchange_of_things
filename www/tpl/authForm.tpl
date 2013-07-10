@@ -5,5 +5,4 @@
 	<button class="btn btn-large btn-primary" type="submit" href="auth.php" tabindex="3">Sign in</button>
 	<a href="registration.html" class="btn btn-large btn-primary" tabindex="4">Sign up</a>
 	<br><br>
-	<a href="" class="btn btn-primary btn-large" type="submit" tabindex="5">Продать товары</a>
 </form>
