@@ -28,17 +28,8 @@ str;
   <div class="container">
 		<div class="span13">
 str;
-	$st=$tabl->prepare('SELECT thingType,name,description,cost FROM things WHERE id=:D');
-	$st->bindValue(':D',$_GET['id']);
-	if (!$st->execute()) var_dump($st->errorInfo());
-	if ($st) {
-		$a=$st->fetch(PDO::FETCH_ASSOC);
-		$tableItem = new template('tpl/tableItem.tpl');
-		foreach ($a as $q=>$v) $tableItem->assign($q,$v);
-		$tableItem->assign('prop',"class='tableItem'");
-		echo $tableItem->getHTML();
-	}
-	echo <<<str
+var_dump($_SESSION['idItem']);
+		echo <<<str
 		</div>
   </div>
 	<div class="comments" id="itemComments">
@@ -48,10 +39,4 @@ str;
 </body>
 </html>
 str;
-if (isset($_POST['exchange'])){
-	$_SESSION['idItem']=$_GET['id'];
-	echo '<script type="text/javascript">';
-	echo 'window.location.href="exchange.php";';//Где exchange.php - стрраница обмена
-	echo '</script>';
-}
-?> 
+?>
