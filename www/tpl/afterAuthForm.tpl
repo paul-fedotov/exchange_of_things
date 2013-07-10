@@ -1,5 +1,5 @@
 <form class="navbar-form pull-right" action="auth.php" method="POST">
-	<img src="img/wpapers_ru_BMW-Х6.jpg"  width="300">
+	<img src="{src}"  width="100">
 	<br>
 	<a href="cabinet.php" class="btn btn-primary " tabindex="1">Личный кабинет</a>
 	<a href="exit.php" class="btn btn-primary " tabindex="2">Выход</a>

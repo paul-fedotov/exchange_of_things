@@ -19,10 +19,10 @@ if ($_SESSION['authorized'] == 1) {
 str;
 	$tabl=new PDO('mysql:host=localhost;dbname=SWAG','admin','admin');
 	if ($_SESSION['authorized']==1) {
-		echo file_get_contents('tpl/afterAuthForm.tpl');
-	} else {
-		echo file_get_contents('tpl/AuthForm.tpl');
-	}
+		$item = new template('tpl/afterAuthForm.tpl');
+		$item->assign('src','ava.php');
+		echo $item->getHTML();
+	} else echo file_get_contents('tpl/authForm.tpl');
 	echo <<<str
 	</div>
   </div>

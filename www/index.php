@@ -1,11 +1,12 @@
 <?php
 	session_start();
+	include 'temp.php';
 	echo file_get_contents('tpl/topHTML.tpl');
 	if ($_SESSION['authorized']==1) {
-		echo file_get_contents('tpl/afterAuthForm.tpl');
-	} else {
-		echo file_get_contents('tpl/AuthForm.tpl');
-	}
+		$item = new template('tpl/afterAuthForm.tpl');
+		$item->assign('src','ava.php');
+		echo $item->getHTML();
+	} else echo file_get_contents('tpl/authForm.tpl');
 	echo <<<str
 	</div>
   </div>
