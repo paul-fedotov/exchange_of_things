@@ -27,7 +27,7 @@ str;
 	</div>
   </div>
   <div class="container">
-		<div class="span13">Формируем обмен
+		<div class="span13">Инфа об обменах
 str;
 
 		echo <<<str
