@@ -1,32 +1,31 @@
 <?php
 session_start();
+include ('bd.php');
+include ('cr.php');
 if ($_SESSION['authorized'] == 1) {
-if (isset($_POST['name'])){//Если существует имя
-    $name = $_POST['name'];
-    $name = stripslashes($name);
-    $name = htmlspecialchars($name);
-    $name = trim($name);//удаляем все лишнее
-    
-    if ($name == '') {
-      exit("Вы не ввели имя<br><a class='btn btn-large btn-primary' href='cabinet.php'>Вернуться назад</a>");
+//Р•СЃР»Рё СЃСѓС‰РµСЃС‚РІСѓРµС‚ РёРјСЏ
+    $name  = $_POST['name'];
+    $name  = stripslashes($name);
+    $name  = htmlspecialchars($name);
+    $name  = trim($name);//СѓРґР°Р»СЏРµРј РІСЃРµ Р»РёС€РЅРµРµ
+	$phone = $_POST["phone"];
+	$phone = trim($phone);
+	$id    = $_SESSION['id'];	
+	$phone = dsCrypt($phone);
+    if (($name == '') && ($phone == '')) {
+      echo"Р’С‹ РЅРµ РІРІРµР»Рё РґР°РЅРЅС‹Рµ<br><a class='btn btn-large btn-primary' href='cabinet.php'>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</a>";
+
     }
-	
-    $sql = mysql_query("UPDATE users SET name='$name' WHERE id=$_SESSION['id_user']");//обновляем имя
+	else {
+    $sql = mysql_query("UPDATE users SET name='$name',phone='$phone' WHERE user_id='$id'");//РѕР±РЅРѕРІР»СЏРµРј РёРјСЏ
 	if ($sql) {
-	    exit("Изменения сохранены!<br><a class='btn btn-large btn-primary' href='cabinet.php'>Вернуться в кабинет</a>");
+	    echo"РР·РјРµРЅРµРЅРёСЏ СЃРѕС…СЂР°РЅРµРЅС‹!<br><a class='btn btn-large btn-primary' href='cabinet.php'>Р’РµСЂРЅСѓС‚СЊСЃСЏ РІ РєР°Р±РёРЅРµС‚</a>";
 	}
 	else {
-	    exit("Ошибка изменения. Изменения не сохранены!<br><a class='btn btn-large btn-primary' href='cabinet.php'>Вернуться назад</a>");
+	    echo"РћС€РёР±РєР° РёР·РјРµРЅРµРЅРёСЏ. РР·РјРµРЅРµРЅРёСЏ РЅРµ СЃРѕС…СЂР°РЅРµРЅС‹!<br><a class='btn btn-large btn-primary' href='cabinet.php'>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</a>";
+	
 	}
-}
-else {
-}
-else {
-}
-else {
-}
-else {
-}
+	}
 }
 else {
 echo '<script type="text/javascript">';
@@ -34,3 +33,12 @@ echo 'window.location.href="index.html";';
 echo '</script>';
 }
 ?>
+<html>
+<head>
+    <title>Р РµР·СѓР»СЊС‚Р°С‚ Р·Р°РіСЂСѓР·РєРё С„Р°Р№Р»Р°</title>
+    <link href="css/bootstrap.css" rel="stylesheet"> 
+	<meta http-equiv="content-type" content="text/html" charset="utf-8">
+</head>
+<body>
+</body>
+</html>

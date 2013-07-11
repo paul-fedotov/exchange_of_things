@@ -1,5 +1,4 @@
-﻿<!-- Надо дописать коннект к базе данных который будет храниться в файле bd.php-->
-<?php
+﻿<?php
 include ('cr.php');
 $login = $_POST['login'];
 $pass = $_POST['password'];

@@ -1,6 +1,13 @@
 <?php
 session_start();
 if ($_SESSION['authorized'] == 1) {
+include ('bd.php');
+include ('cr.php');
+$id =$_SESSION['id'];
+$result = mysql_fetch_assoc(mysql_query ("Select * FROM users where user_id = '$id'"));
+$phone    = $result['phone'];
+$name   = $result['name'];
+$phone    = dsCrypt ($phone,1);
 echo <<<lk
 <html>
 <head>
@@ -38,23 +45,17 @@ echo <<<lk
 	</div>
   <div class="container">
 		<form class="form-signin" action="change.php" method="POST" autocomplete="off" >
-			<h3 class="form-signin-heading">Изменение пароля</h3>
-			<input name="password" type="password" class="input-block-level" placeholder="Пароль" required>
-			<input name="re-password" type="password" class="input-block-level" placeholder="Введите еще раз пароль" required>
-			<h3 class="form-signin-heading">Изменение почты</h3>
-			<input name="password" type="password" class="input-block-level" placeholder="email">
 			<h3 class="form-signin-heading">Изменение имени</h3>
-			<input name="password" type="password" class="input-block-level" placeholder="name">
+			<input name="name" type="text" class="input-block-level" value="$name">
 			<h3 class="form-signin-heading">Изменение телефона</h3>
-			<input name="password" type="password" class="input-block-level" placeholder="telephone">
-			<h3 class="form-signin-heading">Изменение города</h3>
-			<select name="city">
-				<option selected disabled="">Выберите город</option>
-				<option value="Москва">Москва</option>
-				<option value="Санкт-Петербург">Санкт-Петербург</option>
-			</select>
+			<input name="phone" type="number" class="input-block-level" value="$phone">
 			<button class="btn btn-large btn-primary" type="submit">Изменить данные</button>
 		</form>
+		<form class="form-signin" action="avaupload.php" method="POST" autocomplete="off" enctype="multipart/form-data">
+        <h2 class="form-signin-heading">Загрузка фотографии</h2>
+				<input type="file" name="file[]"/><br> 
+        <input class="btn btn-large btn-primary" type="submit" value= "Загрузить"/>
+      </form>
   </div>
 </body>
 </html>
