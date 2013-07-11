@@ -35,12 +35,12 @@
 			} else $len=count($arrLeft);
 			$s="<form method='POST' id='exForm'><a class='btn btn-primary btn-large' onclick=document.getElementById('exForm').submit(); return false;>Предложить обмен</a><br><table class='exchangeTable'>";
 			for ($i=0;$i<$len;$i++) $s.='<tr>'.getTd($arrLeft[$i]).getTd($arrRight[$i]).'</tr>';
-			$s.='</table></form>';
+			$s.="</table><br><textarea name='comments'></textarea></form>";
 			echo $s;
 		}
 	}
 	function add($tabl){
-		if (!empty($_POST)){
+		if (!empty($_POST)){		
 			if ((!empty($_POST))&&(checkId($tabl,$_GET['id'])!==true)) {
 				$left = Array();
 				$right = Array();
@@ -53,11 +53,12 @@
 				if (empty($left)) echo "<div class='error'>Не выбраны вещи к обмену</div>";
 				if (empty($right)) echo "<div class='error'>Не на что менять</div>";
 				if ((!empty($left))&&(!empty($right))){
-					$st=$tabl->prepare("INSERT INTO exchanges(toUser,fromUser,toThing,fromThing) VALUES (:tU,:fU,:tT,:fT)");
+					$st=$tabl->prepare("INSERT INTO exchanges(toUser,fromUser,toThing,fromThing,comments) VALUES (:tU,:fU,:tT,:fT,:c)");
 					$st->bindValue(':tU',checkId($tabl,$_GET['id']));
 					$st->bindValue(':fU',$_SESSION['id']);
 					$st->bindValue(':tT',implode(',',$right));
 					$st->bindValue(':fT',implode(',',$left));
+					$st->bindValue(':c',$_POST['comments']);
 					$st->execute();
 					echo "<div class='unerror'>Предложение об обмене отослано</div>";
 				} 

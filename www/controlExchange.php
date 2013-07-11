@@ -1,5 +1,44 @@
 <?php
 	session_start();
+	include ('cr.php');
+	$tabl=new PDO('mysql:host=localhost;dbname=SWAG','admin','admin');
+	function getTd($a){
+		$to=explode(',',$a['toThing']);
+		$from=explode(',',$a['fromThing']);
+		$s='<td>';
+		for($i=0;$i<count($from);$i++) $s.="<img src='gallery/getOneImage.php?id=".$from[$i]."&number=One' width='40'>";//ссылки на вещи приделать
+		$s.='</td><td>&rarr;</td><td>';
+		for($i=0;$i<count($to);$i++) $s.="<img src='gallery/getOneImage.php?id=".$to[$i]."&number=One' width='40'>";//ссылки на вещи приделать
+		$s.='</td>';
+		return $s;
+	}
+	function getTable($tabl,$arr,$vec){
+		$s="<table><tr class='shapka'><td>Ваши вещи</td><td></td><td>Не ваши вещи</td><td>".((!$vec)?'Кому предложено':'Кто предложил')."</td><td></td></tr>";
+		for($i=0;$i<count($arr);$i++) {
+			$st=$tabl->prepare("SELECT login FROM users WHERE user_id=:D");
+			if (!$vec) { 
+				$st->bindValue(':D',$arr[$i]['toUser']);
+			} else $st->bindValue(':D',$arr[$i]['fromUser']);
+			$st->execute();
+			$a=$st->fetch(PDO::FETCH_ASSOC);
+			$s.='<tr>'.getTd($arr[$i]).'<td>'.dsCrypt($a['login'],true)."</td></tr><tr colspan='4'><td>Комментарий</td><td>".$arr[$i]['comments'].'</td></tr>';//+да/нет
+		}
+		$s.='</table>';
+		return $s;
+	}
+	function getInfo($tabl){
+		$stFrom=$tabl->prepare("SELECT * FROM exchanges WHERE fromUser=:D");
+		$stFrom->bindValue(':D',$_SESSION['id']);
+		$stFrom->execute();
+		$from=$stFrom->fetchAll(PDO::FETCH_ASSOC);
+		$s='<h3>Ваши предложения:</h3><br>'.getTable($tabl,$from,0);
+		$stTo=$tabl->prepare("SELECT * FROM exchanges WHERE toUser=:D");
+		$stTo->bindValue(':D',$_SESSION['id']);
+		$stTo->execute();
+		$to=$stTo->fetchAll(PDO::FETCH_ASSOC);
+		$s.='<h3>Вам предложили:</h3><br>'.getTable($tabl,$to,1);
+		echo $s;
+	}
 if ($_SESSION['authorized'] == 1) {
 	require_once('temp.php');
 	echo <<<str
@@ -17,8 +56,7 @@ if ($_SESSION['authorized'] == 1) {
 		<div class="navbar-inner">
 			<a class="brand"><h2 class="form-signin-heading">Картинка</h2></a>
 str;
-	$tabl=new PDO('mysql:host=localhost;dbname=SWAG','admin','admin');
-	if ($_SESSION['authorized']==1) {
+if ($_SESSION['authorized']==1) {
 		$item = new template('tpl/afterAuthForm.tpl');
 		$item->assign('src','ava.php');
 		echo $item->getHTML();
@@ -27,9 +65,9 @@ str;
 	</div>
   </div>
   <div class="container">
-		<div class="span13">Инфа об обменах
+		<div class="span13">
 str;
-
+getInfo($tabl);
 		echo <<<str
 		</div>
   </div>

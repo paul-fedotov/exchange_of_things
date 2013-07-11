@@ -48,6 +48,8 @@ CREATE TABLE IF NOT EXISTS `exchanges` (/*дату нужно (или не ну�
 	fromUser int(5),/*от кого*/
 	toThing CHAR(100),/*на что меняем (из чужих)*/
 	fromThing CHAR(100),/*что меняем (из своих)*/
+	comments CHAR(255),
+	sost BOOLEAN,
 	PRIMARY KEY (id)
 );
 
