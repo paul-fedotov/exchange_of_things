@@ -40,8 +40,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `key` char(100) NOT NULL,
   PRIMARY KEY (`user_id`)
 );
+/*связи надо еще*/
+DROP TABLE IF EXISTS `exchanges`;
+CREATE TABLE IF NOT EXISTS `exchanges` (/*дату нужно (или не нужно) и т.д.*/
+	id int(5) NOT NULL AUTO_INCREMENT,
+	toUser int(5),/*кому*/
+	fromUser int(5),/*от кого*/
+	toThing CHAR(100),/*на что меняем (из чужих)*/
+	fromThing CHAR(100),/*что меняем (из своих)*/
+	PRIMARY KEY (id)
+);
 
-
-
-INSERT INTO `users` (`user_id`, `name`, `login`, `password`, `email`, `rating`, `foto`, `phone`, `city`, `key`) VALUES/*тест*/
-(1, 'Sergey', 'RME5!6', '0ca9e5597e44aaf4dd1c70c25ca72e82', 'RME5!6_MKW8S]00P', 1, '', 'eroa@', 'Москва', 'FAPeT6QxsY6wvR50D36J2Rn8');
+ALTER TABLE `exchangethings` ADD FOREIGN KEY ( `exchange_id` ) REFERENCES `exchangethings` (`fromUser`) ON DELETE CASCADE ON UPDATE CASCADE ;

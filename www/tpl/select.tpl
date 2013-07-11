@@ -1,0 +1,3 @@
+<select {prop}>
+{value}
+</select>

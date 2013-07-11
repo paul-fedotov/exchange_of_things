@@ -1,0 +1,1 @@
+<a {prop}>{value}</a>

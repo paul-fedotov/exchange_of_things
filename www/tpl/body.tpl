@@ -1,0 +1,1 @@
+<body {prop}>{value}</body>

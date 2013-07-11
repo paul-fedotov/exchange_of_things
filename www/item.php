@@ -40,7 +40,7 @@ str;
 			// $s="<form method='POST'><input type='submit' name='exchange' value='ОБМЕНЯТЬ'></form><br>";
 		// } else $s='';
 		// $tableItem->assign('buttons',$s."<input type='button' name='add' value='ДОБАВИТЬ'>");
-		$tableItem->assign('buttons',"<a href='exchange.php' class='btn btn-primary btn-large' type='submit' tabindex='4'>Обменять вещь</a><br>");
+		$tableItem->assign('buttons',"<a href='exchange.php?id=".$_GET['id']."' class='btn btn-primary btn-large' type='submit' tabindex='4'>Обменять вещь</a><br>");
 		echo $tableItem->getHTML();
 	}
 	echo <<<str
@@ -53,10 +53,4 @@ str;
 </body>
 </html>
 str;
-if (isset($_POST['exchange'])){
-	$_SESSION['idItem']=$_GET['id'];
-	echo '<script type="text/javascript">';
-	echo 'window.location.href="exchange.php";';//Где exchange.php - стрраница обмена
-	echo '</script>';
-}
 ?> 
