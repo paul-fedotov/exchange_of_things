@@ -12,6 +12,15 @@
 		$s.='</td>';
 		return $s;
 	}
+	function getInfo($tabl,$q){
+		$st=$tabl->prepare("SELECT name,phone,email FROM users WHERE user_id=:D");
+		$st->bindValue(':D',$q['toUser']);
+		$st->execute();
+		$a=$st->fetch(PDO::FETCH_ASSOC);
+		
+		$s="<table><tr><td>Имя </td><td>".$a['name']."<td></tr><tr><td>Телефон </td><td>".dsCrypt($a['phone'],true)."</td></tr><tr><td>E-mail </td><td>".dsCrypt($a['email'],true)."</td></tr><tr><td colspan='2'><input type='submit' name='".$q['id']."' value='Удалить'><td><tr></table>";
+		return $s;
+	}
 	function getTable($tabl,$arr,$vec){
 		$s="<table><tr class='shapka'><td>Ваши вещи</td><td></td><td>Не ваши вещи</td><td>".((!$vec)?'Кому предложено':'Кто предложил')."</td><td></td></tr>";
 		for($i=0;$i<count($arr);$i++) {
@@ -21,22 +30,22 @@
 			} else $st->bindValue(':D',$arr[$i]['fromUser']);
 			$st->execute();
 			$a=$st->fetch(PDO::FETCH_ASSOC);
-			$s.='<tr>'.getTd($arr[$i]).'<td>'.dsCrypt($a['login'],true)."</td></tr><tr colspan='4'><td>Комментарий</td><td>".$arr[$i]['comments'].'</td></tr>';//+да/нет
+			$s.='<tr>'.getTd($arr[$i]).'<td>'.dsCrypt($a['login'],true)."</td></tr><tr colspan='4'><td>Комментарий</td><td>".$arr[$i]['comments'].'</td></tr><tr><td>'.((!$vec)?"<input type='submit' name='".$arr[$i]['id']."' value='Отменить'>":(($arr[$i]['sost'])?getInfo($tabl,$arr[$i]):"<input type='submit' name='".$arr[$i]['id']."' value='Согласиться'><input type='submit' name='".$arr[$i]['id']."' value='Отказаться'>")).'</td></tr>';
 		}
 		$s.='</table>';
 		return $s;
 	}
-	function getInfo($tabl){
+	function getEx($tabl){
 		$stFrom=$tabl->prepare("SELECT * FROM exchanges WHERE fromUser=:D");
 		$stFrom->bindValue(':D',$_SESSION['id']);
 		$stFrom->execute();
 		$from=$stFrom->fetchAll(PDO::FETCH_ASSOC);
-		$s='<h3>Ваши предложения:</h3><br>'.getTable($tabl,$from,0);
+		if (!empty($from))$s='<h3>Ваши предложения:</h3><br>'.getTable($tabl,$from,0);
 		$stTo=$tabl->prepare("SELECT * FROM exchanges WHERE toUser=:D");
 		$stTo->bindValue(':D',$_SESSION['id']);
 		$stTo->execute();
 		$to=$stTo->fetchAll(PDO::FETCH_ASSOC);
-		$s.='<h3>Вам предложили:</h3><br>'.getTable($tabl,$to,1);
+		if (!empty($to)) $s.='<h3>Вам предложили:</h3><br>'.getTable($tabl,$to,1);
 		echo $s;
 	}
 if ($_SESSION['authorized'] == 1) {
@@ -66,9 +75,29 @@ if ($_SESSION['authorized']==1) {
   </div>
   <div class="container">
 		<div class="span13">
+			<form method="POST">
 str;
-getInfo($tabl);
+if (!empty($_POST)) {
+	foreach ($_POST as $q => $v) {
+		switch ($v) {
+			case 'Удалить':
+			case 'Отказаться':
+			case 'Отменить': {
+				$st=$tabl->prepare("DELETE FROM exchanges WHERE id=:D");
+				$st->bindValue(':D',$q);
+				$st->execute();
+			} break;
+			case 'Согласиться': {
+				$st=$tabl->prepare("UPDATE exchanges SET sost=true WHERE id=:D");
+				$st->bindValue(':D',$q);
+				$st->execute();
+			} break;
+		}
+	}
+}
+getEx($tabl);
 		echo <<<str
+		</form>
 		</div>
   </div>
 	<div class="comments" id="itemComments">

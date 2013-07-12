@@ -2,7 +2,7 @@
 	session_start();
 	function getTd($a){
 		if (!is_null($a)){
-			$q="<td><input type='checkbox' name='".$a['id']."'><img src='gallery/getOneImage.php?id=".$a['id']."&number=One' width='40'>".$a['thingType']." : ".$a['name']."</td>";
+			$q="<td><input type='checkbox' name='".$a['id']."' ".(($a['id']==$_GET['id'])?'checked':'')."><img src='gallery/getOneImage.php?id=".$a['id']."&number=One' width='40'>".$a['thingType']." : ".$a['name']."</td>";
 		} else $q='<td></td>';
 		return $q;
 	}
