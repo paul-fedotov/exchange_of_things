@@ -53,7 +53,7 @@
 				if (empty($left)) echo "<div class='error'>Не выбраны вещи к обмену</div>";
 				if (empty($right)) echo "<div class='error'>Не на что менять</div>";
 				if ((!empty($left))&&(!empty($right))){
-					$st=$tabl->prepare("INSERT INTO exchanges(toUser,fromUser,toThing,fromThing,comments) VALUES (:tU,:fU,:tT,:fT,:c)");
+					$st=$tabl->prepare("INSERT INTO exchanges(toUser,fromUser,toThing,fromThing,sost,comments) VALUES (:tU,:fU,:tT,:fT,false,:c)");
 					$st->bindValue(':tU',checkId($tabl,$_GET['id']));
 					$st->bindValue(':fU',$_SESSION['id']);
 					$st->bindValue(':tT',implode(',',$right));
