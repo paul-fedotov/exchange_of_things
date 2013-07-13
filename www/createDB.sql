@@ -52,5 +52,3 @@ CREATE TABLE IF NOT EXISTS `exchanges` (/*дату нужно (или не ну�
 	sost BOOLEAN,
 	PRIMARY KEY (id)
 );
-
-ALTER TABLE `exchangethings` ADD FOREIGN KEY ( `exchange_id` ) REFERENCES `exchangethings` (`fromUser`) ON DELETE CASCADE ON UPDATE CASCADE ;

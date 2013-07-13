@@ -18,11 +18,11 @@
 		$st->execute();
 		$a=$st->fetch(PDO::FETCH_ASSOC);
 		
-		$s="<table><tr><td>Имя </td><td>".$a['name']."<td></tr><tr><td>Телефон </td><td>".dsCrypt($a['phone'],true)."</td></tr><tr><td>E-mail </td><td>".dsCrypt($a['email'],true)."</td></tr><tr><td colspan='2'><input type='submit' name='".$q['id']."' value='Удалить'><td><tr></table>";
+		$s="<table><tr><td>Имя </td><td>".$a['name']."<td></tr><tr><td>Телефон </td><td>".dsCrypt($a['phone'],true)."</td></tr><tr><td>E-mail </td><td>".dsCrypt($a['email'],true)."</td></tr><tr><td colspan='2'><input type='submit' name='".$q['id']."' class='btn btn-primary' value='Удалить'><td><tr></table>";
 		return $s;
 	}
 	function getTable($tabl,$arr,$vec){
-		$s="<table><tr class='shapka'><td>Ваши вещи</td><td></td><td>Не ваши вещи</td><td>".((!$vec)?'Кому предложено':'Кто предложил')."</td><td></td></tr>";
+		$s="<table class='table table-striped'><thead><tr><th>Ваши вещи</th><th></th><th>Не ваши вещи</th><th>".((!$vec)?'Кому предложено':'Кто предложил')."</th><th>Комментарии</th><th>".(($vec)?'Контакты':'')."</th></tr><thead>";
 		for($i=0;$i<count($arr);$i++) {
 			$st=$tabl->prepare("SELECT login FROM users WHERE user_id=:D");
 			if (!$vec) { 
@@ -30,7 +30,7 @@
 			} else $st->bindValue(':D',$arr[$i]['fromUser']);
 			$st->execute();
 			$a=$st->fetch(PDO::FETCH_ASSOC);
-			$s.='<tr>'.getTd($arr[$i]).'<td>'.dsCrypt($a['login'],true)."</td></tr><tr colspan='4'><td>Комментарий</td><td>".$arr[$i]['comments'].'</td></tr><tr><td>'.((!$vec)?"<input type='submit' name='".$arr[$i]['id']."' value='Отменить'>":(($arr[$i]['sost'])?getInfo($tabl,$arr[$i]):"<input type='submit' name='".$arr[$i]['id']."' value='Согласиться'><input type='submit' name='".$arr[$i]['id']."' value='Отказаться'>")).'</td></tr>';
+			$s.='<tr>'.getTd($arr[$i]).'<td>'.dsCrypt($a['login'],true)."</td><td>".$arr[$i]['comments'].'</td><td>'.((!$vec)?"<input type='submit' class='btn btn-primary' name='".$arr[$i]['id']."' value='Отменить'>":(($arr[$i]['sost'])?getInfo($tabl,$arr[$i]):"<input type='submit' name='".$arr[$i]['id']."' class='btn btn-primary' value='Согласиться'><input type='submit' class='btn btn-primary' name='".$arr[$i]['id']."' value='Отказаться'>")).'</td></tr>';
 		}
 		$s.='</table>';
 		return $s;
